@@ -49,5 +49,5 @@ $ mv -f phidgets_api ~/catkin_ws/src/phidgets_drivers/
 
 # Usage Instructions
 ```console
-$ roslaunch roboTHIx_X1_base roboTHIx_X1_base.launch
+$ roslaunch robothix_X1_base robothix_X1_base.launch
 ```
