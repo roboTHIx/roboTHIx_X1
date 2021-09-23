@@ -23,7 +23,7 @@ $ catkin_make
 Instead of `catkin_make` you can also use [`catkin build`](https://catkin-tools.readthedocs.io/en/latest/installing.html) (which in my opinion is a better tool)
 
 # Replace Phidgets Files
-To replace the original phidgets_drivers sub-package with the modded one
+To replace the original phidgets_drivers sub-package with the [modded](https://github.com/roboTHIx/thi_modded_phidgets_drivers) one
 ```console
 $ git clone https://github.com/roboTHIx/thi_modded_phidgets_drivers
 $ cd thi_modded_phidgets_drivers
