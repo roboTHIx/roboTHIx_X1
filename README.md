@@ -22,11 +22,15 @@ $ catkin_make
 ```
 Instead of `catkin_make` you can also use [`catkin build`](https://catkin-tools.readthedocs.io/en/latest/installing.html) (which in my opinion is a better tool)
 
+# Replace Phidgets Files
 To replace the original phidgets_drivers sub-package with the modded one
 ```console
-$ cd ~/catkin_ws/src/roboTHIx_X1
-$ mv -f phidgets_api ~/catkin_ws/src/phidgets_drivers/
+$ git clone https://github.com/roboTHIx/thi_modded_phidgets_drivers
+$ cd modded_phidgets_drivers
+$ chmod +x replace_phidgets_files.sh
+$ ./replace_phidgets_files.sh
 ```
+After this, you will be asked if you really want to replace the original phidgets_drivers files. If you answer with "Y" or "y", the files in the ~/catkin_ws/src/phidgets_drivers folder will be replaced.
 
 # PlayStation 4 Gamepad Assignment
 ![PlayStation 4 Gamepad](https://game.capcom.com/manual/re3/locale_re3/de/ps4/page/21_3_1.png)
