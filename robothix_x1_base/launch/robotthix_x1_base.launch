@@ -1,0 +1,12 @@
+<launch>
+
+    <!-- Phidget motor controllers -->
+    <include file="$(find robothix_x1_base)/launch/phidget_drive.launch" />
+
+    <!-- Convert twist to motor but DUMMY NODE!!! -->
+    <node pkg="robothix_x1_base" type="twist_to_diff_motors" name="twist_to_diff_motors" />
+
+    <!-- Teleops -->
+    <include file="$(find robothix_x1_control)/launch/teleop.launch" />
+
+</launch>
