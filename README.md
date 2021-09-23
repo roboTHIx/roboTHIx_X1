@@ -58,5 +58,5 @@ $ catkin_make
 
 # Usage Instructions
 ```console
-$ roslaunch robothix_X1_base robothix_X1_base.launch
+$ roslaunch robothix_x1_base robothix_x1_base.launch
 ```
