@@ -6,7 +6,7 @@ This version supports Noetic. Other versions are not tested so far.
 Before you can use the roboTHIx X1 packages, you have to install external depended packages.
 
   * [`ds4_driver`](https://github.com/naoki-mizuno/ds4_driver) to use a PlayStation 4 gamepad
-  * [`phidgets_drivers`](https://github.com/ros-drivers/phidgets_drivers/tree/noetic) to use the Phidget motor drivers (and other sensors in the future). The original phidgets_drivers package has been modded. How you replace the sub-folder **phidgets_drivers** with the **phidgets_drivers** folder from this package will be explaind in the further course of this explanation.
+  * [`phidgets_drivers`](https://github.com/ros-drivers/phidgets_drivers/tree/noetic) to use the Phidget motor drivers (and other sensors in the future). When you build your workspace, in the first run it's normal that build errors will be displayd. Just source your ROS folders and build it agian. The original phidgets_drivers package has been modded. How you replace the sub-folder **phidgets_drivers** with the **phidgets_drivers** folder from this package will be explaind in the further course of this explanation. 
   * [`twist_mux`](https://github.com/ros-teleop/twist_mux) to use and prioritize divers sources of **cmd_vel**
 
 # Installation

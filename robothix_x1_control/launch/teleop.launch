@@ -22,7 +22,7 @@
         <param name="topic_cmd_vel"         value="$(arg topic_ps4_controller)/cmd_vel" />
         <param name="speed_linear_max"      value="$(arg speed_linear_max_)"            />
         <param name="speed_angular_max"     value="$(arg speed_angular_max_)"           />
-    <node pkg="robothix_x1_control" type="teleop_ps4" name="teleop_ps4" />
+    <node pkg="robothix_x1_control" type="joy_ps4" name="joy_ps4" />
 
     <!-- Twist mux -->
     <node pkg="twist_mux" type="twist_mux" name="twist_mux">
