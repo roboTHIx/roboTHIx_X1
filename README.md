@@ -37,25 +37,6 @@ $ cd ~/catkin_ws
 $ catkin_make
 ```
 
-# PlayStation 4 Gamepad Assignment
-![PlayStation 4 Gamepad](https://game.capcom.com/manual/re3/locale_re3/de/ps4/page/21_3_1.png)
-  * **1** - Drive Backwards
-  * **2** - Drive Forwards
-  * **3** - n.a.
-  * **4** - Press to reset the camera to the default orientation
-  * **5** - n.a.
-  * **6** - n.a.
-  * **7** - n.a.
-  * **8** - n.a.
-  * **9** - n.a.
-  * **10** - n.a.
-  * **11** - n.a.
-  * **12** - n.a.
-  * **13** - Move camera (pan & tilt)
-  * **SHARE** - n.a.
-  * **OPTIONS** - n.a.
-  * **Touchpad** - n.a.
-
 # Usage Instructions
 ```console
 $ roslaunch robothix_x1_base robothix_x1_base.launch
