@@ -15,10 +15,12 @@ To download and install this package, do the following steps
 $ cd ~/catkin_ws/src
 $ git clone https://github.com/roboTHIx/roboTHIx_X1
 ```
-Finally build your workspace
+Compile and source the package
 ```console
 $ cd ~/catkin_ws
 $ catkin_make
+$ source /opt/ros/noetic/setup.bash
+$ source ~/catkin_ws/devel/setup.bash 
 ```
 Instead of `catkin_make` you can also use [`catkin build`](https://catkin-tools.readthedocs.io/en/latest/installing.html) (which in my opinion is a better tool)
 
