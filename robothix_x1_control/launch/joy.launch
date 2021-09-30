@@ -7,8 +7,6 @@
     <arg name="speed_linear_max_"       default="1.0"                   />
     <arg name="speed_angular_max_"      default="3.14159"               />
 
-    <arg name="twist_mux_cmd_vel_out"   default="twist_mux/cmd_vel"     />   
-
     <!-- PS4 controller node -->
     <node pkg="ds4_driver" type="ds4_driver_node.py" name="ds4_driver" >
         <remap from="/status"               to="$(arg topic_ps4_controller)/status"         />
@@ -23,11 +21,5 @@
         <param name="speed_linear_max"      value="$(arg speed_linear_max_)"            />
         <param name="speed_angular_max"     value="$(arg speed_angular_max_)"           />
     <node pkg="robothix_x1_control" type="joy_ps4" name="joy_ps4" />
-
-    <!-- Twist mux -->
-    <node pkg="twist_mux" type="twist_mux" name="twist_mux">
-        <remap from="cmd_vel_out" to="$(arg twist_mux_cmd_vel_out)"/>
-        <rosparam command="load" file="$(find robothix_x1_control)/config/twist_mux.yaml" />
-    </node>
 
 </launch>
