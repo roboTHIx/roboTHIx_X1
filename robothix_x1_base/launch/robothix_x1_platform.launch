@@ -23,9 +23,9 @@
     <include file="$(find robothix_x1_description)/launch/robothix_x1_model.launch" />
 
     <!-- Hector Slam -->
-    <include file="$(find robothix_x1_navigation)/launch/x1_mapping.launch" />
+    <!-- <include file="$(find robothix_x1_navigation)/launch/x1_mapping.launch" /> -->
 
     <!-- RVIZ -->
-     <include file="$(find robothix_x1_base)/launch/rviz_x1.launch" />
+     <!-- <include file="$(find robothix_x1_base)/launch/rviz_x1.launch" /> -->
 
 </launch>

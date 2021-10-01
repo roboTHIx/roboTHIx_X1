@@ -1,26 +1,29 @@
 <launch>
 
     <!-- Sick nanoScan 3 Lidar scanner -->
-    <include file="$(find robothix_x1_base)/launch/sick_nanoscan_3.launch" />
+    <!-- <include file="$(find robothix_x1_base)/launch/sick_nanoscan_3.launch" /> -->
 
     <!-- Orbbec Astra Pro -->
-    <include file="$(find robothix_x1_base)/launch/orbbec_astra_pro.launch" />
+    <!-- <include file="$(find robothix_x1_base)/launch/orbbec_astra_pro.launch" /> -->
 
     <!-- Phidget motor controllers -->
     <!-- <include file="$(find robothix_x1_base)/launch/phidget_drive.launch" /> -->
 
     <!-- Convert twist to motor -->
-    <node pkg="robothix_x1_base" type="twist_to_diff_motors" name="twist_to_diff_motors" />
+    <!-- <node pkg="robothix_x1_base" type="twist_to_diff_motors" name="twist_to_diff_motors" /> -->
 
     <!-- Teleops -->
     <!-- PS4 gamepad connected to the robot itself -->
     <!-- <include file="$(find robothix_x1_control)/launch/robothix_x1_control.launch" /> -->
     
     <!-- PS4 gamepad to a external source -->
-    <include file="$(find robothix_x1_control)/launch/robothix_x1_onBoard_extps4.launch" />
+    <!-- <include file="$(find robothix_x1_control)/launch/robothix_x1_onBoard_extps4.launch" /> -->
+
+    <!-- Just Joy node -->
+    <include file="$(find robothix_x1_control)/launch/joy.launch" />
 
     <!-- Robot model description -->
-    <include file="$(find robothix_x1_description)/launch/robothix_x1_model.launch" />
+    <!-- <include file="$(find robothix_x1_description)/launch/robothix_x1_model.launch" /> -->
 
     <!-- Hector Slam -->
     <include file="$(find robothix_x1_navigation)/launch/x1_mapping.launch" />
