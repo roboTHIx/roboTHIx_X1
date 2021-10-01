@@ -3,11 +3,11 @@
     <!-- Sick nanoScan 3 Lidar scanner -->
     <include file="$(find robothix_x1_base)/launch/sick_nanoscan_3.launch" />
 
-    <!-- Orbbec Astra Pro -->
-    <include file="$(find robothix_x1_base)/launch/orbbec_astra_pro.launch" />
-
     <!-- Phidget motor controllers -->
     <include file="$(find robothix_x1_base)/launch/phidget_drive.launch" />
+
+    <!-- Orbbec Astra Pro -->
+    <!-- <include file="$(find robothix_x1_base)/launch/orbbec_astra_pro.launch" /> -->
 
     <!-- Convert twist to motor -->
     <node pkg="robothix_x1_base" type="twist_to_diff_motors" name="twist_to_diff_motors" />
