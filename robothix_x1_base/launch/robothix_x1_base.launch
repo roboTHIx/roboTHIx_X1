@@ -1,25 +1,31 @@
 <launch>
 
-    <!-- Lidar scanner -->
-    <include file="$(find robothix_x1_base)/launch/lidar_scanner.launch"    />
+    <!-- Sick nanoScan 3 Lidar scanner -->
+    <include file="$(find robothix_x1_base)/launch/sick_nanoscan_3.launch" />
+
+    <!-- Orbbec Astra Pro -->
+    <include file="$(find robothix_x1_base)/launch/orbbec_astra_pro.launch" />
 
     <!-- Phidget motor controllers -->
-    <include file="$(find robothix_x1_base)/launch/phidget_drive.launch"    />
+    <!-- <include file="$(find robothix_x1_base)/launch/phidget_drive.launch" /> -->
 
     <!-- Convert twist to motor -->
-    <node pkg="robothix_x1_base" type="twist_to_diff_motors" name="twist_to_diff_motors"    />
+    <node pkg="robothix_x1_base" type="twist_to_diff_motors" name="twist_to_diff_motors" />
 
     <!-- Teleops -->
     <!-- PS4 gamepad connected to the robot itself -->
-    <!-- <include file="$(find robothix_x1_control)/launch/robothix_x1_control.launch"           /> -->
+    <!-- <include file="$(find robothix_x1_control)/launch/robothix_x1_control.launch" /> -->
     
     <!-- PS4 gamepad to a external source -->
-    <include file="$(find robothix_x1_control)/launch/robothix_x1_onBoard_extps4.launch"   />
+    <include file="$(find robothix_x1_control)/launch/robothix_x1_onBoard_extps4.launch" />
 
     <!-- Robot model description -->
-    <include file="$(find robothix_x1_description)/lauch/robothix_x1_model.launch" />
+    <include file="$(find robothix_x1_description)/launch/robothix_x1_model.launch" />
 
     <!-- Hector Slam -->
     <include file="$(find robothix_x1_navigation)/launch/x1_mapping.launch" />
+
+    <!-- RVIZ -->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find robothix_x1_description)/rviz/robothix_x1_rviz.rviz" />
 
 </launch>
