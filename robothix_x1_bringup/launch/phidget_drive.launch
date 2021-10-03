@@ -38,11 +38,11 @@
 
 
     <!-- Nodelet manager -->
-    <node pkg="nodelet" type="nodelet" name="motors_manager" args="manager" />
+    <node pkg="nodelet" type="nodelet" name="motors_manager" args="manager" respawn="true" />
 
     <!-- Motor controller left -->
     <node pkg="nodelet" type="nodelet" name="PhidgetsMotorsNodelet_left"
-        args="load phidgets_motors/PhidgetsMotorsNodelet motors_manager" >
+        args="load phidgets_motors/PhidgetsMotorsNodelet motors_manager" respawn="true" >
 
         <param name="serial"                  value="$(arg serial)"                 />
         <param name="hub_port"                value="$(arg motor_port_left)"        />
@@ -59,7 +59,7 @@
 
     <!-- Motor controller right -->
     <node pkg="nodelet" type="nodelet" name="PhidgetsMotorsNodelet_right"
-        args="load phidgets_motors/PhidgetsMotorsNodelet motors_manager" >
+        args="load phidgets_motors/PhidgetsMotorsNodelet motors_manager" respawn="true" >
 
         <param name="serial"                  value="$(arg serial)"                 />
         <param name="hub_port"                value="$(arg motor_port_right)"       />

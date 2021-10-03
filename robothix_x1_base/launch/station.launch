@@ -1,0 +1,9 @@
+<launch>
+
+    <!-- Just Joy node -->
+    <include file="$(find robothix_x1_control)/launch/joy.launch" />
+
+    <!-- RVIZ -->
+    <include file="$(find robothix_x1_base)/launch/rviz_x1.launch" />
+
+</launch>
