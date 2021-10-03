@@ -14,7 +14,7 @@
         <param name="pub_map_scanmatch_transform"   value="true" />
         
         <!-- Map size / start point -->
-        <param name="map_resolution"                value="0.02" />
+        <param name="map_resolution"                value="0.04" />
         <param name="map_size"                      value="2048" />
         <param name="map_start_x"                   value="0.5" />
         <param name="map_start_y"                   value="0.5" />
