@@ -17,7 +17,7 @@
     <arg name="measurement_data"      default="True" />
     <arg name="intrusion_data"        default="True" />
     <arg name="application_io_data"   default="True" />
-    <arg name="use_persistent_config"   default="False" />
+    <arg name="use_persistent_config" default="False" />
     
     <!-- Sick nanoScan 3 lidar scanner front -->
     <node pkg="sick_safetyscanners" type="sick_safetyscanners_node" name="lidar_front" output="screen" ns="sick_safetyscanners">
