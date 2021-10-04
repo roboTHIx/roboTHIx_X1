@@ -21,10 +21,6 @@
     <include file="$(find robothix_x1_bringup)/launch/phidget_drive.launch" />
 
 
-    <!-- # DYNAMIC RECONFIGURE # -->
-    <include file="$(find robothix_x1_bringup)/launch/dynamic_reconfigure.launch" />
-
-
     <!--  # CONTROLLERS #  -->
     <!-- Twist mux -->
     <include file="$(find robothix_x1_control)/launch/twist_mux_x1.launch" />
