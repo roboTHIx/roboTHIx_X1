@@ -9,6 +9,9 @@
     <!-- Orbbec Astra Pro -->
     <include file="$(find robothix_x1_bringup)/launch/orbbec_astra_pro.launch" />
 
+    <!-- Octomap server -->
+    <include file="$(find robothix_x1_bringup)/launch/octomap_server.launch" />
+
     <!-- Sick nanoScan 3 Lidar scanner -->
     <include file="$(find robothix_x1_bringup)/launch/sick_nanoscan_3.launch" />
 
