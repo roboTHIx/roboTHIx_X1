@@ -147,6 +147,6 @@
     <node pkg="tf" type="static_transform_publisher" name="$(arg camera)_base_link2" args="$(arg optical_rotate) $(arg tf_prefix)/$(arg camera)_depth_frame $(arg tf_prefix)/$(arg camera)_depth_optical_frame 100" />  
     <node pkg="tf" type="static_transform_publisher" name="$(arg camera)_base_link3" args="$(arg optical_rotate) $(arg tf_prefix)/$(arg camera)_rgb_frame $(arg tf_prefix)/$(arg camera)_rgb_optical_frame 100" /> 
 
-    <node pkg="image_rotate" type="image_rotate" name="rot_rgb_image" args="image:=camera/rgb/image_raw rotated/image:=camera/rgb/image_raw_rotated _target_x:=1.0 _target_y:=0.0 _target_z:=0.0 _source_x:=0.0 _source_y:=-1.0 _source_z:=0.0" />
-    
+    <node pkg="image_rotate" type="image_rotate" name="rot_rgb_image" args="image:=/camera/rgb/image_raw/compressed rotated/image:=/camera/rgb/image_raw/compressed/rotated _target_x:=1.0 _target_y:=0.0 _target_z:=0.0 _source_x:=0.0 _source_y:=-1.0 _source_z:=0.0" />
+
 </launch>
