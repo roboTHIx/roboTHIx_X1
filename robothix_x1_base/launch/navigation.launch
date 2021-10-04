@@ -1,0 +1,17 @@
+<launch>
+
+    <!-- Start robot -->
+    <include file="$(find robothix_x1_base)/launch/bringup.launch" />
+
+    <!-- Map server -->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(find robothix_x1_navigation)/maps/map.yaml"/>
+
+    <!-- AMCL -->
+    <include file="$(find robothix_x1_navigation)/launch/amcl.launch"/>
+
+    <!-- move_base -->
+    <!-- <include file="$(find robothix_x1_navigation)/launch/move_base.launch">
+        <arg name="move_forward_only" value="false"/>
+    </include> -->
+
+</launch>
