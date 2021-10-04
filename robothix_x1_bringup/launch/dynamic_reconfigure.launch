@@ -1,5 +1,5 @@
 <launch>
 
-    <node pkg="dynamic_reconfigure" type="dynparam" name="dynamic_reconfigure_load" args="load /camera/rgb/image_raw_rotated/compressed $(find robothix_x1_bringup)/params/camera_rgb_raw_settings.yaml" />
+    <node pkg="dynamic_reconfigure" type="dynparam" name="dynamic_reconfigure_load" args="load /camera/rgb/image_raw_rotated/compressed $(find robothix_x1_bringup)/params/camera_compress_settings.yaml" />
 
 </launch>
