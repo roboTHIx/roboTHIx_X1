@@ -1,6 +1,7 @@
 #include    <ros/ros.h>
 #include    <ros/console.h>
 #include    <geometry_msgs/Twist.h>
+#include    <std_msgs/Float64.h>
 
 #include    <ds4_driver/Feedback.h>
 #include    <ds4_driver/Status.h>
@@ -15,6 +16,8 @@ ds4_driver::Feedback _feedback;
 geometry_msgs::Twist _twist;
 
 ros::Publisher       _pub_feedback;
+
+std_msgs::Float64    _msg_axis_pan, _msg_axis_tilt, _msg_btn_reset;
 
 
 struct _ps4_controller_status
@@ -94,6 +97,13 @@ void cb_ctrlr_status(const ds4_driver::Status::ConstPtr& _ctrlr)
     float _axis_lin_x = _ctrlr->axis_r2 - _ctrlr->axis_l2;
     float _axis_ang_z = _ctrlr->axis_left_x;
 
+    float _axis_pan   = _ctrlr->axis_right_x;
+    float _axis_tilt  = _ctrlr->axis_right_y;
+    float _btn_reset  = _ctrlr->button_r1;
+
+    // float _axis_tilt   = _ctrlr->button_dpad_up - _ctrlr->button_dpad_down;
+    // float _axis_pan  = _ctrlr->button_dpad_left - _ctrlr->button_dpad_right;
+
     if(_btn_enable == true && _btn_turbo == false)
     {
         calc_joy(NORMAL, _axis_lin_x, _axis_ang_z);
@@ -106,6 +116,10 @@ void cb_ctrlr_status(const ds4_driver::Status::ConstPtr& _ctrlr)
     {
         calc_joy(DISABLED, _axis_lin_x, _axis_ang_z);
     }
+
+    _msg_axis_pan.data = _axis_pan;
+    _msg_axis_tilt.data = _axis_tilt;
+    _msg_btn_reset.data = _btn_reset;
 }
 
 
@@ -125,11 +139,15 @@ int main(int argc, char **argv)
 
     // Subcriber and callbacks
     void cb_ctrlr_status(const ds4_driver::Status::ConstPtr& _ctrlr);
-    ros::Subscriber _sub_status   = _nh.subscribe<ds4_driver::Status>(_sub_topic_prefix + "status", 1, &cb_ctrlr_status);
+    ros::Subscriber _sub_status    = _nh.subscribe<ds4_driver::Status>(_sub_topic_prefix + "status", 1, &cb_ctrlr_status);
 
     // Publisher
-    ros::Publisher  _pub_vel      = _nh.advertise<geometry_msgs::Twist>(_pub_topic_name, 1);
-    ros::Publisher  _pub_feedback = _nh.advertise<ds4_driver::Feedback>(_sub_topic_prefix + "set_feedback", 1);
+    ros::Publisher  _pub_vel       = _nh.advertise<geometry_msgs::Twist>(_pub_topic_name, 1);
+    ros::Publisher  _pub_feedback  = _nh.advertise<ds4_driver::Feedback>(_sub_topic_prefix + "set_feedback", 1);
+    ros::Publisher  _pub_axis_pan  = _nh.advertise<std_msgs::Float64>("axis_pan", 1);
+    ros::Publisher  _pub_axis_tilt = _nh.advertise<std_msgs::Float64>("axis_tilt", 1);
+    ros::Publisher  _pub_btn_reset = _nh.advertise<std_msgs::Float64>("btn_reset", 1);
+
     
     // #### Gamepad ####
     // Enable LED and rumble motors of the gamepad
@@ -142,6 +160,10 @@ int main(int argc, char **argv)
     while(ros::ok())
     {
         _pub_vel.publish(_twist);
+
+        _pub_axis_pan.publish(_msg_axis_pan);
+        _pub_axis_tilt.publish(_msg_axis_tilt);
+        _pub_btn_reset.publish(_msg_btn_reset);
 
         // Prevends the feedback publisher to send all the time
         if(_ctrl_status.feedback_send_state == true)
