@@ -20,6 +20,9 @@
     <!-- Phidget motor controllers -->
     <include file="$(find robothix_x1_bringup)/launch/phidget_drive.launch" />
 
+    <!-- Camera pan tilt unit -->
+    <include file="$(find robothix_x1_bringup)/launch/pan_tilt_unit.launch" />
+
 
     <!--  # CONTROLLERS #  -->
     <!-- Twist mux -->
