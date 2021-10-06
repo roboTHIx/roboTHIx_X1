@@ -10,6 +10,9 @@ project(robothix_x1_description)
 find_package(catkin REQUIRED COMPONENTS
     urdf
     xacro
+    tf
+    rospy
+    roscpp
 )
 
 ## System dependencies are found with CMake's conventions
@@ -148,6 +151,10 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+add_executable(tf_broadcaster_ultraconic nodes/tf_broadcaster_ultrasonic.cpp)
+target_link_libraries(tf_broadcaster_ultraconic ${catkin_LIBRARIES})
+
+
 
 #############
 ## Install ##
