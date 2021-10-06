@@ -62,7 +62,7 @@ void calc_joy(uint teleop_state, float lin_x, float ang_z)
         {
         case DISABLED:
             set_ctrlr_feedback(0.0, 0.25, 0.0, 0.0, 0.0, 0.0);
-            _ctrl_status.speed_scale = 0.3;
+            _ctrl_status.speed_scale = 0.2;
             break;
 
         case NORMAL:
