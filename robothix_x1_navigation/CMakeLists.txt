@@ -10,6 +10,8 @@ project(robothix_x1_navigation)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
+  std_msgs
+  tf
 )
 
 ## System dependencies are found with CMake's conventions
@@ -104,7 +106,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
   # INCLUDE_DIRS include
   LIBRARIES robothix_x1_navigation
-  CATKIN_DEPENDS roscpp rospy
+  CATKIN_DEPENDS roscpp rospy std_msgs
   # DEPENDS system_lib
 )
 
@@ -148,6 +150,10 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+
+
+add_executable(visualization nodes/visualization_msg.cpp)
+target_link_libraries(visualization ${catkin_LIBRARIES})
 
 #############
 ## Install ##
