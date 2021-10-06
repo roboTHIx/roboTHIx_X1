@@ -17,7 +17,7 @@ void callback(const std_msgs::String &msg)
 void callback_radiation(const std_msgs::Bool &msg)
 {
 
-  
+ 
 }
 
 int main(int argc, char **argv)
@@ -31,7 +31,6 @@ int main(int argc, char **argv)
   uint32_t shape = visualization_msgs::Marker::CUBE;
   tf::TransformListener marker_listener;
   tf::StampedTransform transform;
-
   while (ros::ok())
   {
     visualization_msgs::Marker marker;
