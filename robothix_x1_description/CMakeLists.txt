@@ -108,7 +108,7 @@ catkin_package(
 #   INCLUDE_DIRS include
 #   LIBRARIES robothix_x1_description
 #   CATKIN_DEPENDS other_catkin_pkg
-    DEPENDS system_lib urdf xacro
+    DEPENDS urdf xacro
 )
 
 ###########
