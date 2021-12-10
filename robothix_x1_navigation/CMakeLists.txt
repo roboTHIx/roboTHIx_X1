@@ -12,6 +12,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   tf
+  tf2_ros
+  tf2
 )
 
 ## System dependencies are found with CMake's conventions
@@ -134,7 +136,8 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/robothix_x1_navigation_node.cpp)
+#add_executable(gotogoal nodes/gotogoal.cpp)
+add_executable(gotogoalGPS nodes/gotogoalGPS.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -147,13 +150,14 @@ include_directories(
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
+#target_link_libraries(gotogoal
+#  ${catkin_LIBRARIES}
+#)
 
+target_link_libraries(gotogoalGPS
+  ${catkin_LIBRARIES}
+)
 
-add_executable(visualization nodes/visualization_msg.cpp)
-target_link_libraries(visualization ${catkin_LIBRARIES})
 
 #############
 ## Install ##
@@ -164,16 +168,18 @@ target_link_libraries(visualization ${catkin_LIBRARIES})
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# catkin_install_python(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+#catkin_install_python(PROGRAMS
+#  scripts/start_gotogoal.sh
+#  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+#)
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-# install(TARGETS ${PROJECT_NAME}_node
+# install(PROGRAMS 
+#   scripts/start_gotogoal.sh
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
+
 
 ## Mark libraries for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html

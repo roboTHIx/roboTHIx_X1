@@ -6,7 +6,7 @@
 #include    "robothix_x1_base/calc_diff_motors.h"
 
 
-DiffController::TwistToDiffDrive  diff_drive(0.37, 0.165, 0.51, -1.0, 1.0);
+DiffController::TwistToDiffDrive  diff_drive(0.37, 0.165, 0.51, 1.0, 1.0);
 Filter::SmoothingExponential      smooth_left(0.6);
 Filter::SmoothingExponential      smooth_right(0.6);
 
