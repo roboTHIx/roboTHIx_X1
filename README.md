@@ -23,6 +23,7 @@ $ cd ~/catkin_ws
 $ catkin_make
 $ source /opt/ros/noetic/setup.bash
 $ source ~/catkin_ws/devel/setup.bash 
+
 ```
 Instead of `catkin_make` you can also use [`catkin build`](https://catkin-tools.readthedocs.io/en/latest/installing.html) (which in my opinion is a better tool)
 
