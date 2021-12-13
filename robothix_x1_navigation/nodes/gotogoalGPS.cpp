@@ -256,7 +256,7 @@ void moveGoal(double distance_tolerance){
 		velocity_publisher.publish(vel_msg);					//Twist mgs publischen
 		
 		double dist = getDistance(turtlesim_pose.x, turtlesim_pose.y, goal_pose.x, goal_pose.y);	//Abstand berechnen für Print
-		printf("dist: %f pos x: %f pos y: %f goal x: %f goal y: %f\n",dist,turtlesim_pose.x,turtlesim_pose.y,goal_pose.x,goal_pose.y);
+		printf("distance to goal: %f pos x: %f pos y: %f pos_goal x: %f pos_goal y: %f\n",dist,turtlesim_pose.x,turtlesim_pose.y,goal_pose.x,goal_pose.y);
 
 		ros::spinOnce();
 		loop_rate.sleep();

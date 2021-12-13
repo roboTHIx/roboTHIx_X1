@@ -12,9 +12,7 @@
 // Variables for ROS params
 std::string          _sub_topic_prefix, _pub_topic_name;
 double               _speed_linear_max, _speed_angular_max;
-bool                 driving;
 int                  i       = 0;
-uint                 ActMode = 0;
 ds4_driver::Feedback _feedback;
 geometry_msgs::Twist _twist;
 
@@ -30,12 +28,6 @@ struct _ps4_controller_status
     bool    feedback_send_state = true;
     double  speed_scale;
 } _ctrl_status;
-
-enum STEERMODE
-{
-    DEFAULT  = 0,
-    ADVANCED = 1
-};
 
 enum STATE
 { 
@@ -75,11 +67,6 @@ void calc_joy(uint teleop_state, float lin_x, float ang_z)
             _ctrl_status.speed_scale = 0.2;
             break;
 
-        case IDLE:
-            set_ctrlr_feedback(1.0, 1.0, 1.0, 0.0, 0.0, 0.0);
-            _ctrl_status.speed_scale = 0.0;
-            break;
-        
         case NORMAL:
             set_ctrlr_feedback(1.0, 1.0, 0.0, 0.5, 0.0, 0.5);
             _ctrl_status.speed_scale = 0.5;
@@ -130,81 +117,24 @@ void cb_ctrlr_status(const ds4_driver::Status::ConstPtr& _ctrlr)
     // float _axis_tilt = _ctrlr->button_dpad_up    - _ctrlr->button_dpad_down;
     // float _axis_pan  = _ctrlr->button_dpad_left  - _ctrlr->button_dpad_right;
 
-    bool  _btn_modeup   = _ctrlr->button_dpad_up;   // NEW
-    bool  _btn_modedown = _ctrlr->button_dpad_down; // NEW
-    float _btn_camreset = _ctrlr->button_r3;        // NEW
-    _axis_tilt    = _ctrlr->axis_left_y;      // NEW
-    _axis_pan     = _ctrlr->axis_left_x;      // NEW
 
-
-
-    if (ActMode == DEFAULT)
+    if(_btn_enable == true && _btn_turbo == false)
     {
-        if(_btn_enable == true && _btn_turbo == false)
-        {
-            calc_joy(NORMAL, _axis_lin_x, _axis_ang_z);
-        }
-        else if(_btn_enable == true && _btn_turbo == true)
-        {
-            calc_joy(TURBO, _axis_lin_x, _axis_ang_z);
-        }
-        else
-        {
-            calc_joy(DISABLED, _axis_lin_x, _axis_ang_z);
-        }
+        calc_joy(NORMAL, _axis_lin_x, _axis_ang_z);
     }
-    else if (ActMode == ADVANCED)
-    {   
-        if(_ctrlr->axis_r2 > _ctrlr->axis_l2){
-            _axis_lin_x = _ctrlr->axis_r2 /* * _ctrlr->axis_left_y */;
-        }
-        else if(_ctrlr->axis_r2 < _ctrlr->axis_l2){
-            _axis_lin_x = _ctrlr->axis_l2 /* * _ctrlr->axis_left_y */;
-        }
-        else{
-            _axis_lin_x = 0.0;
-        }
-        _axis_ang_z        = _ctrlr->axis_left_x;
-        _btn_turbo         = (_ctrlr->button_l1 || _ctrlr->button_r1); // NEW: overriding 4. line of this function
-        
-
-        if (steerCommandDetected(_axis_lin_x, _axis_ang_z) && _btn_turbo == false)
-        {
-            calc_joy(NORMAL, _axis_lin_x, _axis_ang_z);
-        }
-        else if(steerCommandDetected(_axis_lin_x, _axis_ang_z) && _btn_turbo == true){
-            calc_joy(TURBO, _axis_lin_x, _axis_ang_z);
-        }
-        else{
-            ActMode = IDLE;
-        }
-        
+    else if(_btn_enable == true && _btn_turbo == true)
+    {
+        calc_joy(TURBO, _axis_lin_x, _axis_ang_z);
     }
-    
-    
+    else
+    {
+        calc_joy(DISABLED, _axis_lin_x, _axis_ang_z);
+    }
 
-    // Controller Input Mode Selection: 
-    /*
-    if (_ctrl_status.teleop_state_old == IDLE)
-    {} */
-        // Arrow-Up button selects advanced mode:
-        if (_btn_modeup /* && !_btn_modedown*/ )
-        {
-            ActMode = ADVANCED;
-            set_ctrlr_feedback(1.0, 0.0, 0.0, 0.2, 0.0, 0.5);
-        }
-        // Arrow-Down button selects default/legacy mode:
-        else if (_btn_modedown /* && !_btn_modeup*/ )
-        {
-            ActMode = DEFAULT;
-            set_ctrlr_feedback(1.0, 1.0, 1.0, 0.2, 0.0, 0.2);
-        }
-    
-    
-    
-    _msg_axis_pan.data = _axis_pan;
-    _msg_axis_tilt.data = _axis_tilt;
-    _msg_btn_reset.data = _btn_reset;
+     
+    // _msg_axis_pan.data = _axis_pan;
+    // _msg_axis_tilt.data = _axis_tilt;
+    // _msg_btn_reset.data = _btn_reset;
 }
 
 
@@ -239,7 +169,7 @@ int main(int argc, char **argv)
     enable_ctrlr_feedback(true);
 
     // #### ROS LOOP ####
-    // ROS loop rate for ps4 gamepad feedback puplishing. If it's to fast, the feedback will struggle.
+    // ROS loop rate for ps4 gamepad feedback publishing. If it's to fast, the feedback will struggle.
     ros::Rate _loop_rate(20);
 
     while(ros::ok())
@@ -257,21 +187,11 @@ int main(int argc, char **argv)
             }
         }
 
-        /* if (detectControlerInput()){
-            _pub_vel.publish(_twist);
-            driving = true;
-        }else{
-            if(driving){
-                _pub_vel.publish(_twist);       
-            }
-            driving = false;
-        } */
-
         _pub_axis_pan.publish(_msg_axis_pan);
         _pub_axis_tilt.publish(_msg_axis_tilt);
         _pub_btn_reset.publish(_msg_btn_reset);
 
-        // Prevends the feedback publisher to send all the time
+        // Prevents the feedback publisher to send all the time
         if(_ctrl_status.feedback_send_state == true)
         {
             _pub_feedback.publish(_feedback);
