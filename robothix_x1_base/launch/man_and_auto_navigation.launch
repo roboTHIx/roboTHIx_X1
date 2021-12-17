@@ -12,10 +12,10 @@
 		<include file="$(find phidgets_spatial)/launch/spatial.launch" />
 					
 	<!-- # NAVIGATION AND ROUTING # -->
-		<!-- GPS controlled navigation to a given Point --> 
-		<!-- NOTE: (node should be started manually via "rosrun", since node needs user input) -->
-		<!-- arg name="gotogoalGPS" default="1.0" -->  
-		<!-- node name="gotogoalGPS" pkg="robothix_x1_navigation" type="gotogoalGPS" launch-prefix="bash -c 'sleep $(arg gotogoalGPS); $0 $@' " -->		
+		<!-- GPS controlled navigation to a selectable target --> 
+		<!-- NOTE: (node needs to be be started manually via "rosrun", since node needs user input) -->
+			<!-- arg name="gotogoalGPS" default="1.0" -->  
+			<!-- node name="gotogoalGPS" pkg="robothix_x1_navigation" type="gotogoalGPS" launch-prefix="bash -c 'sleep $(arg gotogoalGPS); $0 $@' " -->	
 	
 	<!-- # ACTUATOR SIGNAL PRECONDITIONING #-->
 		<!-- twist_mux -->		    

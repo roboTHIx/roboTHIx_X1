@@ -16,12 +16,21 @@
 		<node pkg="robothix_x1_base" type="odometry_msg_creation" name="odometry_msg_creation" />
 	
 	<!-- # SENSOR SIGNAL CONDITIONING # -->	
-		<!-- TBD [kalman_filter] -->
+		<!-- Odometry sensor fusion provided only zeros. Not fixed yet. That's why it is outcommented -->
+			<!-- Koordinaten-Transormation der Basiskoordinatensysteme von Magnetometer und Ublox (imus Systeme zu base_link) -->
+			<!-- node pkg="robot_localization" type="YPR.cpp" name="imus_node"/>  --> 
+
+			<!-- Sensor Data Fusion (Odometry, GNNS, Magnetometer -->
+			<!-- include file="$(find robot_localization)/launch/navsat_transform_template.launch"/> -->
+
+			<!-- Extended Kalman Filter -->
+			<!-- include file="$(find robot_localization)/launch/ekf_template.launch"/> -->  
+                        
 					
 	<!-- # NAVIGATION AND ROUTING # -->
-		<!-- GPS controlled navigation to a given Point --> 
-		<!-- NOTE: (node should be started manually via "rosrun", since node needs user input) -->
-		<!-- arg name="gotogoalGPS" default="1.0" -->  
-		<!-- node name="gotogoalGPS" pkg="robothix_x1_navigation" type="gotogoalGPS" launch-prefix="bash -c 'sleep $(arg gotogoalGPS); $0 $@' " -->
+		<!-- GPS controlled navigation to a selectable target --> 
+		<!-- NOTE: (node needs to be be started manually via "rosrun", since node needs user input) -->
+			<!-- arg name="gotogoalGPS" default="1.0" -->  
+			<!-- node name="gotogoalGPS" pkg="robothix_x1_navigation" type="gotogoalGPS" launch-prefix="bash -c 'sleep $(arg gotogoalGPS); $0 $@' " -->
 
 </launch>

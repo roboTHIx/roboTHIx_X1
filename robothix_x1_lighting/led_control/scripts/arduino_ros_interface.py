@@ -39,7 +39,7 @@ rospy.loginfo(mode)
 
 def gps_signal(msg):          
     rospy.loginfo("gps_signal fkt called")                                            #Aufruffunktion des Publishers
-    if msg.latitude != 0 and  msg.longitude != 0 and msg.altitude != 0:
+    if msg.latitude != 0 or msg.longitude != 0 or msg.altitude != 0:
         #status.GPS.data = 1                                                 # Wert der Message wird festgelegt
         global mode 
         #rospy.loginfo("Mode " + mode) 
@@ -64,7 +64,7 @@ def main():                                                               #Aufru
     rospy.init_node('status_signal', anonymous=True)                        
                                             
     sub = rospy.Subscriber('/twist_mux/cmd_vel', Twist, fahrtrichtung)       #Suscribt zu Rostopic fix
-    sub = rospy.Subscriber('/ublox_gps/fix', NavSatFix, gps_signal)       #Suscribt zu Rostopic fix
+    sub = rospy.Subscriber('/ublox/fix', NavSatFix, gps_signal)       #Suscribt zu Rostopic fix
     rate = rospy.Rate(15)
 
     rospy.loginfo("Sucessfully started node")  

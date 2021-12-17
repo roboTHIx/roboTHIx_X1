@@ -1,7 +1,7 @@
 <launch>
 	<!-- # SIGNAL PRECONDITIONING # -->
-		<!-- twist_to_diff_motor -->
-		<!-- >node pkg="robothix_x1_base" type="twist_to_diff_motors" name="twist_to_diff_motors" /> -->
+		<!-- twist_to_diff_motor  -->
+		<!-- <node pkg="robothix_x1_base" type="twist_to_diff_motors" name="twist_to_diff_motors" /> -->
 		
 		<!-- driver control and feedback -->
 		<!-- see  ACTUATORS -->
