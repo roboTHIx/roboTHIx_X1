@@ -78,12 +78,13 @@ and save and exit
 * [`ds4_drv`](https://github.com/naoki-mizuno/ds4_drv) to use a PlayStation 4 Controller connected to PC via Bluetooth  
 * [`phidgets_drivers`](https://github.com/ros-drivers/phidgets_drivers/tree/noetic) to use the Phidget motor drivers (and other sensors in the future). When you build your workspace, in the first run it's normal that build errors will be displayed. Just source your ROS folders and build it again. The original phidgets_drivers package has been modified. How you replace the sub-folder **phidgets_drivers** with the **phidgets_drivers** folder from this package will be explained in a later step of this explanation.  
 * [`sick_safetyscanner`](http://wiki.ros.org/sick_safetyscanners) to use the Sick nanoScan 3 in the front of the robot. Please install from source, not from binaries!  
-* [`hector_slam`](http://wiki.ros.org/hector_slam)   
+* [`hector_slam`](http://wiki.ros.org/hector_slam)
+* [`ublox`](https://github.com/MDkontroller/ublox.git) ublox GNNS+IMU sensor. this is a forked Repository containing an optimized configuration file.    
   
 ## As binaries (as precompiled code to system folder):  
 * ['twist_mux'] by `sudo apt-get install ros-noetic-twist-mux`. Multiplexes and prioritizes multiple sources of **cmd_vel** to one output  
-* ['rosserial_arduino'] by s`udo apt-get install ros-noetic-rosserial`. ROSserial interface nodes, e.g. for interfacing an Arduino to control the LED stripes as well as interfacing the Geiger-Detector  
-* ['ublox'] by `sudo apt-get install ros-noetic-twist-mux`. U-Blox GNNS IMU sensor  
+* ['rosserial_arduino'] by s`udo apt-get install ros-noetic-rosserial`. ROSserial interface nodes, e.g. for interfacing an Arduino to control the LED stripes as well as interfacing the Geiger-Detector
+   
   
 ## Installation  
 Pull/Fork the Project Repositories:  
@@ -125,6 +126,36 @@ $ ./replace_phidgets_files.sh
 ```
 
 After that, you will be asked if you really want to replace the original phidgets_drivers files. If you answer with "Y" or "y", the files in the ~/catkin_ws/src/phidgets_drivers folder will be replaced.
+
+### replace Phidget spatial Config files
+
+Navigate to the path and **uncomment** the neccesary configuration parameters accordinng to your needs.
+after our testing best was to uncomment all the params and set a frequency around 4ms.
+further details about parameter/calibration configuration can be found in README.md under /phidgets_spatial file.
+
+
+```console
+$ cd ~/catkin_ws/src/phidgets_drivers/phidgets_spatial/launch
+$ nano spatial.launch
+```
+In addition to this, an IMU Madwick filter will be required:
+
+```console
+$ sudo apt install ros-noetic-imu-filter-madgwick
+``` 
+
+### ublox Chipset Configuration
+
+Our Navilock device is backed by ublox-NEO-M8U GNSS chip set.
+within the package you will find the File NEO-M8U.yaml in the config file, there you can change config according to this paper: https://www.u-blox.com/sites/default/files/products/documents/u-blox8-M8_ReceiverDescrProtSpec_UBX-13003221.pdf
+
+The optimized config is wrapped thanks to this: https://github.com/MrBanannaMan/NEO-M8U-Configuration-Files
+
+Install also the necccesary driver for ublox serial communication
+```cosole 
+$ sudo apt install ros-noetic-rtcm-msgs
+```
+
 Build your workspace again  
 ```console
 $ cd ~/catkin_ws  
