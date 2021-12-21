@@ -64,7 +64,7 @@ SETUP PROCEDURE
 	# As binaries (as precompiled code to system folder):
 	  * ['twist_mux']() by sudo apt-get install ros-noetic-twist-mux. Multiplexes and prioritizes multiple sources of **cmd_vel** to one output
 	  * ['rosserial_arduino']() by sudo apt-get install ros-noetic-rosserial. ROSserial interface nodes, e.g. for interfacing an Arduino to control the LED stripes as well as interfacing the Geiger-Detector
-	  * [`ublox`]() TBD
+	  * [`rtcm_msgs`]() by sudo apt install ros-noetic-rtcm-msgs. It provides the neccesary driver for ublox serial communication.
 
 	# Installation
 	Pull/Fork the Project Repositories:
@@ -104,6 +104,26 @@ SETUP PROCEDURE
 	$ ./replace_phidgets_files.sh
 	```
 	After this, you will be asked if you really want to replace the original phidgets_drivers files. If you answer with "Y" or "y", the files in the ~/catkin_ws/src/phidgets_drivers folder will be replaced.
+	
+	# Change Config files for "Phidgets Spatial" Magnetometer
+	Navigate to the path and **uncomment** the neccesary configuration parameters accordinng to your needs.
+	It is recommended to uncomment all the params and set a frequency of around 4 Milliseconds.
+	Further details about Parameters and Configuration can be found in README.md under /phidgets_spatial directory of phidgets drivers package.
+
+	```console
+	$ cd ~/catkin_ws/src/phidgets_drivers/phidgets_spatial/launch
+	$ nano spatial.launch
+	```
+
+	# Change Ublox Chipset Configuration files
+	The Navilock GNSS device is backed by ublox-NEO-M8U GNSS chip set.
+	Within the package you will find the **file NEO-M8U.yaml** in **config files**. Change this config file according to this paper: 
+	https://www.u-blox.com/sites/default/files/products/documents/u-blox8-M8_ReceiverDescrProtSpec_UBX-13003221.pdf
+
+	The optimized config is wrapped thanks to this: 
+	https://github.com/MrBanannaMan/NEO-M8U-Configuration-Files
+	
+	
 	Build your workspace again
 	```console
 	$ cd ~/catkin_ws
